@@ -119,4 +119,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once("veiw/layout.php");
+require_once("views/layout.php");

@@ -48,7 +48,13 @@
                         <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
                     </li>
                     <li class="flex-1 md:flex-none md:mr-3">
-                        <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">link</a>
+                        <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewMain">Home</a>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewUsersList">Users List</a>
+                    </li>
+                    <li class="flex-1 md:flex-none md:mr-3">
+                        <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=formulaire">add User</a>
                     </li>
                     <li class="flex-1 md:flex-none md:mr-3">
                         <div class="relative inline-block">
@@ -69,8 +75,7 @@
 
     </nav>
 </header>
-    <nav><a href="index.php?action=formulaire">userForm</a><a href="index.php?action=viewUsersList">usersList</a></nav>
-    <h1><?=$title?></h1>
+    
     <?=$content?>
 </body>
 </html>

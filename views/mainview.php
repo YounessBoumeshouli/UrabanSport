@@ -16,12 +16,12 @@ ob_start();
                     <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
                         <li class="mr-3 flex-1">
                             <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Tasks</span>
+                                <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Activities</span>
                             </a>
                         </li>
                         <li class="mr-3 flex-1">
                             <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500">
-                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Messages</span>
+                                <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Reservations</span>
                             </a>
                         </li>
                         <li class="mr-3 flex-1">
@@ -118,7 +118,7 @@ ob_start();
                                     <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">To Do List</h2>
+                                    <h2 class="font-bold uppercase text-gray-600">Total Activites</h2>
                                     <p class="font-bold text-3xl">7 tasks</p>
                                 </div>
                             </div>
@@ -321,22 +321,7 @@ ob_start();
                         <!--/table Card-->
                     </div>
 
-                <div class="w-full md:w-1/2 xl:w-1/3 p-6">
-                    <!--Advert Card-->
-                    <div class="bg-white border-transparent rounded-lg shadow-xl">
-                        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                            <h2 class="font-bold uppercase text-gray-600">Advert</h2>
-                        </div>
-                        <div class="p-5 text-center">
-
-
-                            <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7D52JJ&placement=wwwtailwindtoolboxcom" id="_carbonads_js"></script>
-
-
-                        </div>
-                    </div>
-                    <!--/Advert Card-->
-                </div>
+               
 
 
                 </div>
@@ -384,4 +369,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once("view/layout.php");
+require_once("views/layout.php");

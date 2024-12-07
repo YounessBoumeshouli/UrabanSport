@@ -1,5 +1,6 @@
 <?php
-require_once('controller/controller.php');
+
+require_once('controller/usercontroller.php');
 if(isset($_GET["action"])){
     $action = $_GET["action"];
 
@@ -9,10 +10,12 @@ if(isset($_GET["action"])){
             break;
         case  'addUserAction':
             addUserAction();
+        case  'viewMain':
+            viewMain();
         case  'viewUsersList':
             viewUsersList();
         default:
-            viewUsersList();    
+        viewMain();    
             break;
     }
 }
