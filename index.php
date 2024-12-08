@@ -18,4 +18,7 @@ if(isset($_GET["action"])){
         viewMain();    
             break;
     }
+}else{
+    viewMain();    
 }
+

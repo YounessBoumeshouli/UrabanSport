@@ -13,15 +13,15 @@
     <meta name="keywords" content="keywords,here">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> <!--Replace with your tailwind.css once created-->
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> <!--Totally optional :) -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/> 
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 
 </head>
 
 <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
 <header>
-    <!--Nav-->
+
     <nav aria-label="menu nav" class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0">
 
         <div class="flex flex-wrap items-center">
@@ -44,9 +44,7 @@
 
             <div class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end">
                 <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
-                    <li class="flex-1 md:flex-none md:mr-3">
-                        <a class="inline-block py-2 px-4 text-white no-underline" href="#">Active</a>
-                    </li>
+                    
                     <li class="flex-1 md:flex-none md:mr-3">
                         <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewMain">Home</a>
                     </li>

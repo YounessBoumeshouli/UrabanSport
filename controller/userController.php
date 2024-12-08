@@ -8,10 +8,10 @@ function addUserAction(){
     
 }
 function viewMain(){
-    // $result = SelectUsers();
+   
     require_once('views/mainview.php');
 }
 function viewUsersList(){
-    // $result = SelectUsers();
+    
     require_once('views/listusers.php');
 }
