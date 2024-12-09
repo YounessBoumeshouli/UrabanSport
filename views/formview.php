@@ -42,14 +42,6 @@ ob_start();
                 <label for="city">City</label>
                 <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
-
-             
-
-          
-              
-
-
-      
               <div class="md:col-span-5 text-right">
                 <div class="inline-flex items-end">
                   <input type="submit" value="submit"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

@@ -14,6 +14,8 @@ if(isset($_GET["action"])){
             viewMain();
         case  'viewUsersList':
             viewUsersList();
+        case  'adminFormulaire':
+            viewadminForm();
         default:
         viewMain();    
             break;

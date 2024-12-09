@@ -15,3 +15,6 @@ function viewUsersList(){
     
     require_once('views/listusers.php');
 }
+function viewadminForm(){
+    require_once('views/formAdmin.php');
+}

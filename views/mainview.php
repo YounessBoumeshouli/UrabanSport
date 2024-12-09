@@ -103,8 +103,8 @@ ob_start();
                                     <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Server Uptime</h2>
-                                    <p class="font-bold text-3xl">152 days</p>
+                                    <h2 class="font-bold uppercase text-gray-600">Total equipements</h2>
+                                    <p class="font-bold text-3xl">152 equipements</p>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ ob_start();
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
                                     <h2 class="font-bold uppercase text-gray-600">Total Activites</h2>
-                                    <p class="font-bold text-3xl">7 tasks</p>
+                                    <p class="font-bold text-3xl">7 activities</p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ ob_start();
                                     <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
-                                    <h2 class="font-bold uppercase text-gray-600">Issues</h2>
+                                    <h2 class="font-bold uppercase text-gray-600">TOTAL RESERVATIONS</h2>
                                     <p class="font-bold text-3xl">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
