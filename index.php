@@ -10,12 +10,28 @@ if(isset($_GET["action"])){
             break;
         case  'addUserAction':
             addUserAction();
+            break;
         case  'viewMain':
             viewMain();
+            break;
+        case  'viewFormUser':
+            viewFormUser();
+            break;
         case  'viewUsersList':
             viewUsersList();
+            break;
         case  'adminFormulaire':
             viewadminForm();
+            break;
+        case 'adminAuthentification':
+            adminAuthentification();
+            break;
+        case 'userAuthentification':
+            userAuthentification();
+            break;
+        case 'usermainview':
+            usermainview();
+            break;
         default:
         viewMain();    
             break;

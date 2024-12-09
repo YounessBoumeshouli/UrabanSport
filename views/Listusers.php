@@ -4,7 +4,7 @@ ob_start();
 ?>
 
     <div class="mt-8">
-        <h4 class="text-gray-600">Wide Table</h4>
+       
         
         <div class="flex flex-col mt-6">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">

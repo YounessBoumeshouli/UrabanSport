@@ -1,6 +1,6 @@
 <?php
 function Connexion(){
-    $mysqli = new mysqli("localhost","root","","store");
+    $mysqli = new mysqli("localhost","root","","urbansport");
 
 if($mysqli->connect_error){
     die("error in connection".$mysqli->connect_error);
@@ -21,5 +21,23 @@ function SelectUsers(){
     $result = $connexion->query("SELECT * from users");
    
     
+    return $result;
+}
+function Authadmin(){
+    
+   
+    $password = $_POST["password"];
+    $nom = $_POST["nom"];
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from users where username = '$nom' and password_hash = '$password' and role='admin'");
+    return $result;
+}
+function Authuser(){
+    
+   
+    $password = $_POST["password"];
+    $nom = $_POST["nom"];
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from users where username = '$nom' and password_hash = '$password' and role='user'");
     return $result;
 }

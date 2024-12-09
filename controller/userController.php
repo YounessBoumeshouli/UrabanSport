@@ -18,3 +18,24 @@ function viewUsersList(){
 function viewadminForm(){
     require_once('views/formAdmin.php');
 }
+function viewFormUser(){
+    require_once('views/formUser.php');
+}
+function adminAuthentification(){
+    $result = Authadmin();
+    while($row=$result->fetch_assoc()){
+
+        echo $row['username'];
+        require_once('views/mainview.php');
+     }
+        
+    }
+    
+
+function userAuthentification(){
+    $result = Authuser();
+    require_once('views/mainview.php');
+}
+function usermainview(){
+    require_once('views/usermainview.php');
+}

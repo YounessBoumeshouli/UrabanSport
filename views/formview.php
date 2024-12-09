@@ -46,6 +46,9 @@ ob_start();
                 <div class="inline-flex items-end">
                   <input type="submit" value="submit"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 </div>
+                <div class="ml-3 text-sm">
+                              <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I already have an account<a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="index.php?action=viewFormUser">   login</a></label>
+                            </div>
               </div>
 
            
