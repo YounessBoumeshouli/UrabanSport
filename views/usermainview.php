@@ -232,6 +232,7 @@ ob_start();
           </div>
         </div>
       </div>
+	  
     </div>
   </section>
 
@@ -254,7 +255,7 @@ ob_start();
             </p>
             <div class="btn-box">
               <a href="">
-                READ MORE
+                Reserve an equipement
               </a>
             </div>
           </div>

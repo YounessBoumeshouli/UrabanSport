@@ -50,8 +50,12 @@ function userAuthentification(){
         
         require_once('views/usermainview.php');
      }
-    
-     
-    
-    
+}
+function ReserverEquipement(){
+    $result = selectEquipements();
+    require_once("views/reserveEquipement.php");
+}
+function ReserverActivity(){
+    $result = selectActivites();
+    require_once("views/reserverActivity.php");
 }

@@ -38,6 +38,12 @@ if(isset($_GET["action"])){
         case 'usermainview':
             usermainview();
             break;
+        case 'ReserverEquipement':
+            ReserverEquipement();
+            break;
+        case 'ReserverActivity':
+            ReserverActivity();
+            break;
         default:
         viewMain();    
             break;
