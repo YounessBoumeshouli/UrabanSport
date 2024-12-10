@@ -18,15 +18,12 @@ ob_start();
 
           <div class="lg:col-span-2">
             
-          <form action="" method="post" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
+          <form action="index.php?action=SignIn" method="post" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
               <div class="md:col-span-5">
-                <label for="first_name">first Name</label>
+                <label for="first_name">Full Name</label>
                 <input type="text" name="first_name" id="first_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
-              <div class="md:col-span-5">
-                <label for="last_name">last Name</label>
-                <input type="text" name="last_name" id="last_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
-              </div>
+              
 
               <div class="md:col-span-5">
                 <label for="email">Email Address</label>
@@ -39,8 +36,8 @@ ob_start();
               </div>
 
               <div class="md:col-span-2">
-                <label for="city">City</label>
-                <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  />
               </div>
               <div class="md:col-span-5 text-right">
                 <div class="inline-flex items-end">

@@ -51,3 +51,20 @@ function selectActivites(){
     $result = $connexion->query("SELECT * from activités");
     return $result;
 }
+function SelectOneActivity($id){
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from activités where id_activite = $id");
+    return $result;
+}
+function addReservedActivity($idActivity,$idClient){
+    $connexion = Connexion();
+    $stmt = $connexion->prepare("INSERT INTO `reservations_activites`( `ID_Membre`, `ID_Activité`) 
+    VALUES (?,?)");
+    $stmt->execute([$idClient,$idActivity]);
+    if ($stmt->affected_rows > 0) {
+        $stmt1  = $connexion->prepare("UPDATE `activités` SET `Capacité`= `Capacité`-1 WHERE  `id_activite` = ?");
+        $stmt1->execute([$idActivity]);
+    } else {
+        echo "No rows were inserted. Please check your data.";
+    }
+}

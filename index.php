@@ -44,6 +44,12 @@ if(isset($_GET["action"])){
         case 'ReserverActivity':
             ReserverActivity();
             break;
+        case 'ChooseActivity':
+            ChooseActivity();
+            break;
+        case 'Activityreserved':
+            Activityreserved();
+            break;
         default:
         viewMain();    
             break;
