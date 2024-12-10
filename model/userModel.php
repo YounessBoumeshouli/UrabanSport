@@ -56,6 +56,11 @@ function SelectOneActivity($id){
     $result = $connexion->query("SELECT * from activités where id_activite = $id");
     return $result;
 }
+function SelectOneEquipement($id){
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from equipements where ID_Equipement = $id");
+    return $result;
+}
 function addReservedActivity($idActivity,$idClient){
     $connexion = Connexion();
     $stmt = $connexion->prepare("INSERT INTO `reservations_activites`( `ID_Membre`, `ID_Activité`) 

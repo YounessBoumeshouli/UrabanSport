@@ -35,7 +35,7 @@ ob_start();
                 <img src="images/facebook-logo.png" alt="">
               </a>
               <div class="text-black"><?=$row["Quantite"]?></div>
-              <a href="index.php?action=ChooseEquipement&id=<?=$row["id_equipement"]?>">
+              <a href="index.php?action=ChooseEquipement&id=<?=$row["ID_Equipement"]?>">
                 <p class="w-7">reserve</p>
               </a>
             </div>

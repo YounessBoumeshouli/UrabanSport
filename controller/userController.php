@@ -68,6 +68,11 @@ function ChooseActivity(){
     $result = SelectOneActivity($idActivity);
     require_once("views/ChooseActivity.php");
 }
+function ChooseEquipement(){
+    $idEquipement = $_GET["id"];
+    $result = SelectOneEquipement($idEquipement);
+    require_once("views/ChooseEquipement.php");
+}
 function Activityreserved(){
     $idActivity = $_GET["idActivity"];
     $idClient = $_GET["idClient"];
