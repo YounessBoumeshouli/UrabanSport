@@ -38,12 +38,9 @@ function adminAuthentification(){
     $result = Authadmin();
     while($row=$result->fetch_assoc()){
         $_SESSION["adminName"] = $row['username'];
-        
         require_once('views/mainview.php');
      }
-     require_once('views/formAdmin.php');
-     
-        
+     require_once('views/formAdmin.php');   
     }
     
 
@@ -78,4 +75,22 @@ function Activityreserved(){
     $idClient = $_GET["idClient"];
     addReservedActivity($idActivity,$idClient);
     header('location:index.php?action=usermainview');
+}
+function Equipementreserved(){
+    $idEquipement = $_GET["idEquipement"];
+    $idClient = $_GET["idClient"];
+    addReservedEquipement($idEquipement,$idClient);
+    header('location:index.php?action=usermainview');
+}
+function  LogoutClient(){
+    session_destroy();
+    header("location:index.php?action=viewFormUser");
+}
+function  SignIn(){
+  $result = insertUser();
+  while ($row = $result->fetch_assoc()) {
+    $_SESSION["UserName"] = $row["username"];
+        $_SESSION["user_id"] = $row["user_id"];
+        require_once('views/usermainview.php');
+  }
 }

@@ -56,11 +56,15 @@ if(isset($_GET["action"])){
         case 'Equipementreserved':
             Equipementreserved();
             break;
+        case 'LogoutClient':
+            LogoutClient();
+            break;
+        case 'SignIn':
+            SignIn();
+            break;
         default:
         viewMain();    
             break;
     }
-}else{
-    viewMain();    
 }
 

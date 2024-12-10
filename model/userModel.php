@@ -10,11 +10,23 @@ else{
 }
 }
 function InsertUser(){
-    extract($_POST);
     $connexion = Connexion();
-    $stmt =$connexion->prepare("INSERT INTO users (name,email,idFacture) values (?,?,?)");
-    $stmt->bind_param("ssi",$username,$useremail,$idFacture);
-    $stmt->execute();
+    extract($_POST);
+    $stmt1 = $connexion->prepare("SELECT * from users where nemro_telephone = ? or email = ?");
+    $stmt1->execute([$NumeroTelephone,$email]);
+    if($stmt1->affected_rows != 0){
+        
+    }else{
+        $stmt =$connexion->prepare("INSERT INTO users (user_name,email,password_hash,nemro_telephone) values (?,?,?,?)");
+        $stmt->bind_param("ssss",$full_name,$email,$NumeroTelephone,$password);
+        $stmt->execute(); 
+        $stmt2 = $connexion->prepare("SELECT * from users where username = ? and nemro_telephone = ? and  email = ? ");
+        $stmt2->execute([$full_name,$NumeroTelephone,$email]); 
+        return $stmt2;
+
+    }
+   
+    
 }
 function SelectUsers(){
     $connexion = Connexion();
@@ -69,6 +81,18 @@ function addReservedActivity($idActivity,$idClient){
     if ($stmt->affected_rows > 0) {
         $stmt1  = $connexion->prepare("UPDATE `activités` SET `Capacité`= `Capacité`-1 WHERE  `id_activite` = ?");
         $stmt1->execute([$idActivity]);
+    } else {
+        echo "No rows were inserted. Please check your data.";
+    }
+}
+function addReservedEquipement($idEquipement,$idClient){
+    $connexion = Connexion();
+    $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`) 
+    VALUES (?,?)");
+    $stmt->execute([$idClient,$idEquipement]);
+    if ($stmt->affected_rows > 0) {
+        $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-1 WHERE  `ID_Equipement` = ?");
+        $stmt1->execute([$idEquipement]);
     } else {
         echo "No rows were inserted. Please check your data.";
     }

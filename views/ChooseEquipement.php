@@ -35,7 +35,7 @@ while($row = $result->fetch_assoc()){
               </span>
               <span class="ml-2 text-gray-600 text-sm"><?=$row["Quantite"]?> untities available</span>
         </div>
-        <a href="index.php?action=Equipementreserved&idClient=<?=$_SESSION["user_id"]?>&idActivity=<?=$row["ID_Equipement"]?>" class="bg-green-500">Reserve Now</a>
+        <a href="index.php?action=Equipementreserved&idClient=<?=$_SESSION["user_id"]?>&idEquipement=<?=$row["ID_Equipement"]?>" class="bg-green-500">Reserve Now</a>
       </div>
     </div>
   </div>
