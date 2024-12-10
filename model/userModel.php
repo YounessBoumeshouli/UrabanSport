@@ -46,3 +46,8 @@ function selectEquipements(){
     $result = $connexion->query("SELECT * from equipements");
     return $result;
 }
+function selectActivites(){
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from activités");
+    return $result;
+}

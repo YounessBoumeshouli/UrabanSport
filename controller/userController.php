@@ -1,5 +1,6 @@
 <?php
 include("model/usermodel.php");
+session_start();
 function viewForm(){
     require_once('views/formview.php');
 }
@@ -32,7 +33,7 @@ function viewFormUser(){
 function adminAuthentification(){
     $result = Authadmin();
     while($row=$result->fetch_assoc()){
-
+        $_SESSION["adminName"] = $row['username'];
         
         require_once('views/mainview.php');
      }
@@ -44,8 +45,13 @@ function adminAuthentification(){
 
 function userAuthentification(){
     $result = Authuser();
-    require_once('views/mainview.php');
-}
-function usermainview(){
-    require_once('views/usermainview.php');
+        while($row=$result->fetch_assoc()){
+        $_SESSION["UserName"] = $row['username'];
+        
+        require_once('views/usermainview.php');
+     }
+    
+     
+    
+    
 }
