@@ -15,6 +15,14 @@ function viewUsersList(){
     
     require_once('views/listusers.php');
 }
+function viewEquipementList(){
+    $result = selectEquipements();
+    require_once('views/EquipementsList.php');
+}
+function viewActivitesList(){
+    $result = selectActivites();
+    require_once('views/ListActivities.php');
+}
 function viewadminForm(){
     require_once('views/formAdmin.php');
 }
@@ -25,9 +33,11 @@ function adminAuthentification(){
     $result = Authadmin();
     while($row=$result->fetch_assoc()){
 
-        echo $row['username'];
+        
         require_once('views/mainview.php');
      }
+     require_once('views/formAdmin.php');
+     
         
     }
     

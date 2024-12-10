@@ -41,3 +41,8 @@ function Authuser(){
     $result = $connexion->query("SELECT * from users where username = '$nom' and password_hash = '$password' and role='user'");
     return $result;
 }
+function selectEquipements(){
+    $connexion = Connexion();
+    $result = $connexion->query("SELECT * from equipements");
+    return $result;
+}

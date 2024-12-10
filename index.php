@@ -20,6 +20,12 @@ if(isset($_GET["action"])){
         case  'viewUsersList':
             viewUsersList();
             break;
+        case  'viewEquipements':
+            viewEquipementList();
+            break;
+        case  'viewActivity':
+            viewActivitesList();
+            break;
         case  'adminFormulaire':
             viewadminForm();
             break;
