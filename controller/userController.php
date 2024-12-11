@@ -87,10 +87,6 @@ function  LogoutClient(){
     header("location:index.php?action=viewFormUser");
 }
 function  SignIn(){
-  $result = insertUser();
-  while ($row = $result->fetch_assoc()) {
-    $_SESSION["UserName"] = $row["username"];
-        $_SESSION["user_id"] = $row["user_id"];
-        require_once('views/usermainview.php');
-  }
+  insertUser();
+  
 }

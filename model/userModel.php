@@ -9,25 +9,42 @@ else{
     return $mysqli;
 }
 }
-function InsertUser(){
+// num_rows for select and affected_rows for others
+function InsertUser() {
     $connexion = Connexion();
-    extract($_POST);
-    $stmt1 = $connexion->prepare("SELECT * from users where nemro_telephone = ? or email = ?");
-    $stmt1->execute([$NumeroTelephone,$email]);
-    if($stmt1->affected_rows != 0){
-        
-    }else{
-        $stmt =$connexion->prepare("INSERT INTO users (user_name,email,password_hash,nemro_telephone) values (?,?,?,?)");
-        $stmt->bind_param("ssss",$full_name,$email,$NumeroTelephone,$password);
-        $stmt->execute(); 
-        $stmt2 = $connexion->prepare("SELECT * from users where username = ? and nemro_telephone = ? and  email = ? ");
-        $stmt2->execute([$full_name,$NumeroTelephone,$email]); 
-        return $stmt2;
-
-    }
-   
     
+    $NumeroTelephone = $_POST['NumeroTelephone'];
+    $email = $_POST['email'];
+    $full_name = $_POST['full_name'];
+    $password = $_POST['password']; 
+
+    $stmt1 = $connexion->prepare("SELECT * FROM users WHERE nemro_telephone = ? OR email = ?");
+    $stmt1->bind_param("ss", $NumeroTelephone, $email); 
+    $stmt1->execute();
+    $result = $stmt1->get_result(); 
+
+    if ($result->num_rows == 0) {
+        $stmt = $connexion->prepare("INSERT INTO users (username, email, nemro_telephone, password_hash) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $full_name, $email, $NumeroTelephone, $password); 
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+           
+            header("Location: index.php?action=viewFormUser");
+            exit(); 
+        } else {
+            echo "Failed to insert user. Please try again.";
+        }
+
+        $stmt->close(); 
+    } else {
+        echo "User already exists.";
+    }
+
+    $stmt1->close(); 
+    $connexion->close(); 
 }
+
 function SelectUsers(){
     $connexion = Connexion();
     $result = $connexion->query("SELECT * from users");
@@ -87,12 +104,13 @@ function addReservedActivity($idActivity,$idClient){
 }
 function addReservedEquipement($idEquipement,$idClient){
     $connexion = Connexion();
-    $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`) 
-    VALUES (?,?)");
-    $stmt->execute([$idClient,$idEquipement]);
+    $quantite = $_POST["quantite"];
+    $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`,`Quantite_Reservee`) 
+    VALUES (?,?,?)");
+    $stmt->execute([$idClient,$idEquipement,$quantite]);
     if ($stmt->affected_rows > 0) {
-        $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-1 WHERE  `ID_Equipement` = ?");
-        $stmt1->execute([$idEquipement]);
+        $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-? WHERE  `ID_Equipement` = ?");
+        $stmt1->execute([$quantite,$idEquipement]);
     } else {
         echo "No rows were inserted. Please check your data.";
     }
