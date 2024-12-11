@@ -99,4 +99,5 @@ function EditeUser(){
 }
 function UpdateAction(){
     UpdateUserInfos();
+    viewUsersList();
 }

@@ -21,6 +21,7 @@ ob_start();
                 ?>
           <form action="index.php?action=Update" method="post" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
               <div class="md:col-span-5">
+              <input type="hidden" name="user_id"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value=<?=$row["user_id"]?>  />
                 <label for="full">Full Name</label>
                 <input type="text" name="full_name" id="first_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  value=<?=$row["username"]?>  />
               </div>

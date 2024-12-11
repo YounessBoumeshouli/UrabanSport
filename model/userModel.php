@@ -143,8 +143,14 @@ function selectUserById(){
 }
 function  UpdateUserInfos(){
     $connexion = Connexion();
-    $stmt = $connexion->prepare("UPDATE into users  where user_id = ?");
-    $stmt->execute([$id]);
+    $user_name = $_POST["full_name"];
+    $id = $_POST["user_id"];
+    $full_name = $_POST["full_name"];
+    $email = $_POST["email"];
+    $NumeroTelephone = $_POST["NumeroTelephone"];
+    $password = $_POST["password"];
+    $stmt = $connexion->prepare("UPDATE `users` SET `username`=?,`password_hash`=?,`email`=?,`nemro_telephone`=? WHERE `user_id`=?");
+    $stmt->execute([$user_name,$password,$email,$NumeroTelephone,$id]);
     $result = $stmt->get_result();
     return $result;
 }
