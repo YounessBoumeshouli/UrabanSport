@@ -1,0 +1,108 @@
+-- Création de la table `activités` pour stocker les informations des activités.
+CREATE TABLE `activités` (
+  `id_activite` int(11) NOT NULL AUTO_INCREMENT,
+  `activite_name` varchar(255) NOT NULL UNIQUE, -- Nom de l'activité (doit être unique).
+  `Description` text DEFAULT NULL, -- Description de l'activité.
+  `ImageActivity` varchar(255) NOT NULL, -- Chemin ou URL de l'image associée à l'activité.
+  `Capacité` int(11) DEFAULT NULL, -- Nombre maximum de participants autorisés.
+  `Prix` float DEFAULT NULL, -- Prix par participant pour cette activité.
+  `date_debut` date DEFAULT NULL, -- Date de début de l'activité.
+  `date_fin` date DEFAULT NULL, -- Date de fin de l'activité.
+  `Disponibilité` tinyint(1) DEFAULT NULL, -- Indique si l'activité est disponible (1) ou non (0).
+  PRIMARY KEY (`id_activite`)
+) ;
+
+-- Insertion des données initiales dans la table `activités`.
+INSERT INTO `activités` (`id_activite`, `activite_name`, `Description`, `ImageActivity`, `Capacité`, `Prix`, `date_debut`, `date_fin`, `Disponibilité`) VALUES
+(1, 'Cours de Yoga', 'Session de yoga pour débutants et intermédiaires', '0', 19, 50, '2024-12-15', '2024-12-15', 1),
+(2, 'Zumba', 'Cours de danse cardio énergique', '0', 25, 100, '2024-12-16', '2024-12-16', 1);
+-- Plus de lignes d'insertion ici...
+
+-- Création de la table `equipements` pour stocker les informations des équipements disponibles.
+CREATE TABLE `equipements` (
+  `ID_Equipement` int(11) NOT NULL AUTO_INCREMENT,
+  `Nom_Equipement` varchar(100) NOT NULL, -- Nom de l'équipement.
+  `Description` text DEFAULT NULL, -- Description de l'équipement.
+  `ImageEquipement` varchar(255) NOT NULL, -- Chemin ou URL de l'image associée à l'équipement.
+  `Quantite` int(11) NOT NULL, -- Quantité disponible de l'équipement.
+  `Prix` double DEFAULT NULL, -- Prix unitaire de l'équipement.
+  `Disponibilite` tinyint(1) DEFAULT 1, -- Indique si l'équipement est disponible (1) ou non (0).
+  PRIMARY KEY (`ID_Equipement`)
+)
+
+-- Insertion des données initiales dans la table `equipements`.
+INSERT INTO `equipements` (`ID_Equipement`, `Nom_Equipement`, `Description`, `ImageEquipement`, `Quantite`, `Prix`, `Disponibilite`) VALUES
+(1, 'Tapis de course', 'Un tapis roulant pour les séances de cardio', '', 0, 20, 0),
+(2, 'Vélo elliptique', 'Vélo elliptique pour des exercices complets', '', 0, 16, 0),
+-- Plus de lignes d'insertion ici...
+
+-- Création de la table `reservations_activites` pour enregistrer les réservations des activités par les utilisateurs.
+CREATE TABLE `reservations_activites` (
+  `ID_Reservation` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Membre` int(11) NOT NULL, -- ID de l'utilisateur ayant réservé.
+  `ID_Activité` int(11) NOT NULL, -- ID de l'activité réservée.
+  `Date_Reservation` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(), -- Date et heure de la réservation.
+  `Places_Reserver` int(11) NOT NULL, -- Nombre de places réservées.
+  `Prix_Reservation` double NOT NULL, -- Prix total de la réservation.
+  `Statut` enum('Confirmée','Annulée') DEFAULT 'Confirmée', -- Statut de la réservation.
+  PRIMARY KEY (`ID_Reservation`),
+  KEY `ID_Membre` (`ID_Membre`),
+  KEY `ID_Activité` (`ID_Activité`),
+  CONSTRAINT `reservations_activites_ibfk_1` FOREIGN KEY (`ID_Membre`) REFERENCES `users` (`user_id`), -- Lien avec la table `users`.
+  CONSTRAINT `reservations_activites_ibfk_2` FOREIGN KEY (`ID_Activité`) REFERENCES `activités` (`id_activite`) -- Lien avec la table `activités`.
+) 
+
+-- Insertion des données initiales dans la table `reservations_activites`.
+INSERT INTO `reservations_activites` (`ID_Reservation`, `ID_Membre`, `ID_Activité`, `Date_Reservation`, `Places_Reserver`, `Prix_Reservation`, `Statut`)
+ VALUES
+(1, 2, 1, '2024-12-10 14:49:59', 0, 0, 'Confirmée'),
+(2, 2, 9, '2024-12-10 14:53:40', 0, 0, 'Confirmée');
+-- Plus de lignes d'insertion ici...
+
+-- Création de la table `reservations_equipements` pour enregistrer les réservations d'équipements par les utilisateurs.
+CREATE TABLE `reservations_equipements` (
+  `ID_Reservation` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Membre` int(11) NOT NULL, -- ID de l'utilisateur ayant réservé.
+  `ID_Equipement` int(11) NOT NULL, -- ID de l'équipement réservé.
+  `Quantite_Reservee` int(11) NOT NULL, -- Quantité d'équipements réservée.
+  `Date_Reservation` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(), -- Date et heure de la réservation.
+  `Statut` enum('Confirmée','Annulée') DEFAULT 'Confirmée', -- Statut de la réservation.
+  `Prix` int(11) NOT NULL, -- Prix total de la réservation.
+  PRIMARY KEY (`ID_Reservation`),
+  KEY `ID_Membre` (`ID_Membre`),
+  KEY `ID_Equipement` (`ID_Equipement`),
+  CONSTRAINT `reservations_equipements_ibfk_1` FOREIGN KEY (`ID_Membre`) REFERENCES `users` (`user_id`), -- Lien avec la table `users`.
+  CONSTRAINT `reservations_equipements_ibfk_2` FOREIGN KEY (`ID_Equipement`) REFERENCES `equipements` (`ID_Equipement`) -- Lien avec la table `equipements`.
+) 
+-- Insertion des données initiales dans la table `reservations_equipements`.
+INSERT INTO `reservations_equipements` (`ID_Reservation`, `ID_Membre`, `ID_Equipement`, `Quantite_Reservee`, `Date_Reservation`, `Statut`, `Prix`) VALUES
+(1, 2, 1, 0, '0000-00-00 00:00:00', 'Confirmée', 0),
+(2, 2, 6, 1, '2024-12-10 10:15:00', 'Confirmée', 50),
+-- Plus de lignes d'insertion ici...
+
+-- Requête pour sélectionner un utilisateur spécifique en fonction de son ID.
+SELECT * FROM users WHERE user_id = 1;
+
+-- Requête pour insérer une nouvelle réservation d'équipement.
+INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`, `Quantite_Reservee`) 
+VALUES (2, 1, 5);
+
+-- Requête pour mettre à jour la capacité d'une activité après une réservation.
+UPDATE `activités` SET `Capacité`= `Capacité`-1 WHERE  `id_activite` = 1;
+
+-- Requête pour supprimer un utilisateur spécifique en fonction de son ID.
+DELETE FROM `users` WHERE user_id = 3;
+
+-- Requête pour obtenir les utilisateurs ayant le rôle "user" et leurs statistiques de réservation.
+SELECT 
+    users.*, 
+    COUNT(DISTINCT reservations_equipements.ID_Reservation) AS numberTrEquipement, -- Nombre de réservations d'équipements.
+    COUNT(DISTINCT reservations_activites.ID_Reservation) AS numberTrActivity -- Nombre de réservations d'activités.
+FROM 
+    users
+LEFT JOIN reservations_equipements ON users.user_id = reservations_equipements.ID_Membre
+LEFT JOIN reservations_activites ON users.user_id = reservations_activites.ID_Membre
+WHERE 
+    users.role = 'user'
+GROUP BY 
+    users.user_id;

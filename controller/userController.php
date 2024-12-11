@@ -17,7 +17,7 @@ function usermainview(){
     require_once('views/usermainview.php');
 }
 function viewUsersList(){
-    
+    $result = SelectUsers();
     require_once('views/listusers.php');
 }
 function viewEquipementList(){
@@ -89,4 +89,14 @@ function  LogoutClient(){
 function  SignIn(){
   insertUser();
   
+}
+function  error_404(){
+    require_once("views/pageNotFound.php");
+}
+function EditeUser(){
+   $result =  selectUserById();
+   require_once("views/updateuser.php");
+}
+function UpdateAction(){
+    UpdateUserInfos();
 }

@@ -47,14 +47,23 @@ function InsertUser() {
 
 function SelectUsers(){
     $connexion = Connexion();
-    $result = $connexion->query("SELECT * from users");
+    $result = $connexion->query("SELECT 
+    users.*, 
+    COUNT(DISTINCT reservations_equipements.ID_Reservation) AS numberTrEquipement, 
+    COUNT(DISTINCT reservations_activites.ID_Reservation) AS numberTrActivity
+FROM 
+    users
+LEFT JOIN reservations_equipements ON users.user_id = reservations_equipements.ID_Membre
+LEFT JOIN reservations_activites ON users.user_id = reservations_activites.ID_Membre
+WHERE 
+    users.role = 'user'
+GROUP BY 
+    users.user_id;");
    
     
     return $result;
 }
 function Authadmin(){
-    
-   
     $password = $_POST["password"];
     $nom = $_POST["nom"];
     $connexion = Connexion();
@@ -62,8 +71,6 @@ function Authadmin(){
     return $result;
 }
 function Authuser(){
-    
-   
     $password = $_POST["password"];
     $nom = $_POST["nom"];
     $connexion = Connexion();
@@ -72,12 +79,12 @@ function Authuser(){
 }
 function selectEquipements(){
     $connexion = Connexion();
-    $result = $connexion->query("SELECT * from equipements");
+    $result = $connexion->query("SELECT * from equipements where Disponibilite = 1");
     return $result;
 }
 function selectActivites(){
     $connexion = Connexion();
-    $result = $connexion->query("SELECT * from activités");
+    $result = $connexion->query("SELECT * from activités where Disponibilité = 1");
     return $result;
 }
 function SelectOneActivity($id){
@@ -92,12 +99,19 @@ function SelectOneEquipement($id){
 }
 function addReservedActivity($idActivity,$idClient){
     $connexion = Connexion();
-    $stmt = $connexion->prepare("INSERT INTO `reservations_activites`( `ID_Membre`, `ID_Activité`) 
-    VALUES (?,?)");
-    $stmt->execute([$idClient,$idActivity]);
+    $capacite = $_POST["capacite"];
+    $prix = $_POST["prix"];
+    $total = $prix * $capacite;
+    $stmt = $connexion->prepare("INSERT INTO `reservations_activites`( `ID_Membre`, `ID_Activité`,`Prix_Reservation`,`Places_Reserver`) 
+    VALUES (?,?,?,?)");
+    $stmt->execute([$idClient,$idActivity,$total,$capacite]);
     if ($stmt->affected_rows > 0) {
-        $stmt1  = $connexion->prepare("UPDATE `activités` SET `Capacité`= `Capacité`-1 WHERE  `id_activite` = ?");
-        $stmt1->execute([$idActivity]);
+        $stmt1  = $connexion->prepare("UPDATE `activités` SET `Capacité`= `Capacité`-? WHERE  `id_activite` = ?");
+        $stmt1->execute([$capacite,$idActivity]);
+        if ($stmt1->affected_rows > 0) {
+            $stmt2 = $connexion->prepare("UPDATE `activités` SET Disponibilité = ? where `Capacité` = ?");
+            $stmt2->execute([0,0]);
+        }
     } else {
         echo "No rows were inserted. Please check your data.";
     }
@@ -111,7 +125,26 @@ function addReservedEquipement($idEquipement,$idClient){
     if ($stmt->affected_rows > 0) {
         $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-? WHERE  `ID_Equipement` = ?");
         $stmt1->execute([$quantite,$idEquipement]);
+        if ($stmt1->affected_rows > 0) {
+            $stmt2 = $connexion->prepare("UPDATE `equipements` SET Disponibilite = ? where `Quantite` = ?");
+            $stmt2->execute([0,0]);
+        }
     } else {
         echo "No rows were inserted. Please check your data.";
     }
+}
+function selectUserById(){
+    $connexion = Connexion();
+    $id = $_GET["id"];
+    $stmt = $connexion->prepare("select * from users where user_id = ?");
+    $stmt->execute([$id]);
+    $result = $stmt->get_result();
+    return $result;
+}
+function  UpdateUserInfos(){
+    $connexion = Connexion();
+    $stmt = $connexion->prepare("UPDATE into users  where user_id = ?");
+    $stmt->execute([$id]);
+    $result = $stmt->get_result();
+    return $result;
 }

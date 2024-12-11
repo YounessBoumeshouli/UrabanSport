@@ -37,7 +37,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php?action=usermainview">
             <span>
               Neogym
             </span>
@@ -55,8 +55,8 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item ">
+                  <a class="nav-link" href="index.php?action=usermainview">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="index.php?action=ReserverEquipement"> Reserve an equipement </a>

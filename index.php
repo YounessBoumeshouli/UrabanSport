@@ -62,9 +62,17 @@ if(isset($_GET["action"])){
         case 'SignIn':
             SignIn();
             break;
+        case 'EditeUser':
+            EditeUser();
+            break;
+        case 'Update':
+            UpdateAction();
+            break;
         default:
-        viewMain();    
+        error_404();    
             break;
     }
+}else{
+    error_404();    
 }
 

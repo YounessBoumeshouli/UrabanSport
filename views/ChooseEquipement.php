@@ -37,8 +37,9 @@ while($row = $result->fetch_assoc()){
         </div>
         
         <form action="index.php?action=Equipementreserved&idClient=<?=$_SESSION["user_id"]?>&idEquipement=<?=$row["ID_Equipement"]?>" method="post">
+          <input type="hidden" value="<?=$row["Prix"]?>">
           <label for="quantite">Quantity:</label>
-        <input type="number" class="text-black bg-yellow-200" name="quantite" min="1" >
+        <input type="number" class="text-black bg-yellow-200" name="quantite" min="1" max="<?=$row["Quantite"]?>">
         <input type="submit" class="bg-green-500" value="Reserve Now">
         </form>
       </div>
