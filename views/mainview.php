@@ -4,16 +4,23 @@
 $title = "Users list";
 ob_start();
 
+
+    # code...
+
+    
 ?>
 
 
 <main>
 
     <div class="flex flex-col md:flex-row">
-        
+   
         <section>
             <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+<?php
 
+
+    ?>
                 <div class="bg-gray-800 pt-3">
                     <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
                         <h1 class="font-bold pl-2"><?php  
@@ -33,8 +40,13 @@ ob_start();
                                     <div class="rounded-full p-5 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
+                               
+        <h1>Dashboard</h1>
+       
+   
                                     <h2 class="font-bold uppercase text-gray-600">Total Revenue</h2>
-                                   <p class="font-bold text-3xl">$3249 <span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
+                                   <p class="font-bold text-3xl"><?=$stats["Total_RevenueActivity"]+$stats["Total_RevenueEquipement"]?> DH
+ <span class="text-green-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +61,7 @@ ob_start();
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
                                     <h2 class="font-bold uppercase text-gray-600">Total Users</h2>
-                                    <p class="font-bold text-3xl">249 <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></p>
+                                    <p class="font-bold text-3xl"><?=$stats["Total_Users"]?><span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +91,7 @@ ob_start();
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
                                     <h2 class="font-bold uppercase text-gray-600">Total equipements</h2>
-                                    <p class="font-bold text-3xl">152 equipements</p>
+                                    <p class="font-bold text-3xl"><?=$stats["Total_Equipements"]?></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +106,7 @@ ob_start();
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
                                     <h2 class="font-bold uppercase text-gray-600">Total Activites</h2>
-                                    <p class="font-bold text-3xl">7 activities</p>
+                                    <p class="font-bold text-3xl"><?=$stats["Total_Activities"]?></p>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +121,7 @@ ob_start();
                                 </div>
                                 <div class="flex-1 text-right md:text-center">
                                     <h2 class="font-bold uppercase text-gray-600">TOTAL RESERVATIONS</h2>
-                                    <p class="font-bold text-3xl">3 <span class="text-red-500"><i class="fas fa-caret-up"></i></span></p>
+                                    <p class="font-bold text-3xl"><?=$stats["Total_ReservationActivity"]+$stats["Total_ReservationEquipement"]?><span class="text-red-500"><i class="fas fa-caret-up"></i></span></p>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +147,7 @@ ob_start();
                                         "labels": ["January", "February", "March", "April"],
                                         "datasets": [{
                                             "label": "Page Impressions",
-                                            "data": [10, 20, 30, 40],
+                                            "data": [10, 10, 30, 40],
                                             "borderColor": "rgb(255, 99, 132)",
                                             "backgroundColor": "rgba(255, 99, 132, 0.2)"
                                         }, {
@@ -177,7 +189,7 @@ ob_start();
                                         "labels": ["January", "February", "March", "April", "May", "June", "July"],
                                         "datasets": [{
                                             "label": "Views",
-                                            "data": [65, 59, 80, 81, 56, 55, 40],
+                                            "data": [65, 59, 80, 10, 56, 55, 40],
                                             "fill": false,
                                             "borderColor": "rgb(75, 192, 192)",
                                             "lineTension": 0.1
@@ -300,11 +312,12 @@ ob_start();
 
 
                 </div>
+                
             </div>
         </section>
+    
     </div>
 </main>
-
 
 
 
@@ -343,5 +356,6 @@ ob_start();
 </script>
 
 <?php
+
 $content = ob_get_clean();
 require_once("views/layout.php");

@@ -119,9 +119,11 @@ function addReservedActivity($idActivity,$idClient){
 function addReservedEquipement($idEquipement,$idClient){
     $connexion = Connexion();
     $quantite = $_POST["quantite"];
-    $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`,`Quantite_Reservee`) 
+    $prix = $_POST["prix"];
+    $ResPrix = $quantite * $prix;
+    $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`,`Quantite_Reservee`,`Prix`) 
     VALUES (?,?,?)");
-    $stmt->execute([$idClient,$idEquipement,$quantite]);
+    $stmt->execute([$idClient,$idEquipement,$quantite,$ResPrix]);
     if ($stmt->affected_rows > 0) {
         $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-? WHERE  `ID_Equipement` = ?");
         $stmt1->execute([$quantite,$idEquipement]);
@@ -153,4 +155,24 @@ function  UpdateUserInfos(){
     $stmt->execute([$user_name,$password,$email,$NumeroTelephone,$id]);
     $result = $stmt->get_result();
     return $result;
+}
+function DeleteUser(){
+    $connexion = Connexion();
+    $id = $_GET["id"];
+    $stmt = $connexion->prepare("Delete from `users`  WHERE `user_id`=?");
+    $stmt->execute([$id]);
+}
+function Stats() {
+        $connexion = Connexion();
+
+    $result = $connexion->query("SELECT (SELECT COUNT(user_id) FROM users) AS Total_Users,
+            (SELECT SUM(Prix_Reservation) FROM reservations_activites) AS Total_RevenueActivity,
+            (SELECT SUM(Prix) FROM reservations_equipements) AS Total_RevenueEquipement,
+            (SELECT COUNT(id_activite) FROM activités) AS Total_Activities,
+            (SELECT COUNT(ID_Reservation) FROM reservations_equipements) AS Total_ReservationActivity,
+            (SELECT COUNT(ID_Reservation) FROM reservations_activites) AS Total_ReservationEquipement,
+            (SELECT COUNT(ID_Equipement) FROM equipements) AS Total_Equipements");
+            $stats = $result->fetch_assoc();
+    return $stats;
+  
 }

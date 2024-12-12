@@ -9,9 +9,9 @@ function addUserAction(){
     
 }
 function viewMain(){
-   
+    $stats = Stats();
     require_once('views/mainview.php');
-}
+} 
 function usermainview(){
    
     require_once('views/usermainview.php');
@@ -100,4 +100,9 @@ function EditeUser(){
 function UpdateAction(){
     UpdateUserInfos();
     viewUsersList();
+}
+function DeleteUserAction(){
+    DeleteUser();
+    viewUsersList();
+
 }

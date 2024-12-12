@@ -68,6 +68,9 @@ if(isset($_GET["action"])){
         case 'Update':
             UpdateAction();
             break;
+        case 'DeleteUser':
+            DeleteUserAction();
+            break;
         default:
         error_404();    
             break;
