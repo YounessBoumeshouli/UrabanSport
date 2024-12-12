@@ -41,6 +41,9 @@ if(isset($_GET["action"])){
         case 'ReserverEquipement':
             ReserverEquipement();
             break;
+        case 'MyReservation':
+            MyReservation();
+            break;
         case 'ReserverActivity':
             ReserverActivity();
             break;

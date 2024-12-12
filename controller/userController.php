@@ -45,13 +45,15 @@ function adminAuthentification(){
     
 
 function userAuthentification(){
-    $result = Authuser();
-        while($row=$result->fetch_assoc()){
-        $_SESSION["UserName"] = $row["username"];
-        $_SESSION["user_id"] = $row["user_id"];
-        require_once('views/usermainview.php');
+    $row = Authuser();
+       if($row == false){
+        viewFormUser();
+       }
+       else{
+        
+        require_once('views/usermainview.php');}
      }
-}
+
 function ReserverEquipement(){
     $result = selectEquipements();
     require_once("views/reserveEquipement.php");
@@ -105,4 +107,8 @@ function DeleteUserAction(){
     DeleteUser();
     viewUsersList();
 
+}
+function MyReservation(){
+    $result =  selectReservations();
+   require_once("views/updateuser.php");
 }

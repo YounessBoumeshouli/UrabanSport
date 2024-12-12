@@ -56,7 +56,7 @@
                 <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
                     
                     <li class="flex-1 md:flex-none md:mr-3">
-                        <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewMain">Home</a>
+                       <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewMain">Home</a>
                     </li>
                     <li class="flex-1 md:flex-none md:mr-3">
                         <a class="inline-block text-gray-400 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="index.php?action=viewUsersList">Users List</a>

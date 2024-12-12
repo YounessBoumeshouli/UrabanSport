@@ -66,6 +66,9 @@
                   <a class="nav-link" href="index.php?action=ReserverActivity"> Reserve an activity</a>
                 </li>
                 <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=MyReservation&id=<?=$_SESSION["user_id"]?>">My reservation</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" href="contact.html"> Contact Us</a>
                 </li>
               </ul>

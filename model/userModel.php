@@ -17,7 +17,7 @@ function InsertUser() {
     $email = $_POST['email'];
     $full_name = $_POST['full_name'];
     $password = $_POST['password']; 
-
+    $hashed_password = password_hash($password,PASSWORD_DEFAULT);
     $stmt1 = $connexion->prepare("SELECT * FROM users WHERE nemro_telephone = ? OR email = ?");
     $stmt1->bind_param("ss", $NumeroTelephone, $email); 
     $stmt1->execute();
@@ -25,7 +25,7 @@ function InsertUser() {
 
     if ($result->num_rows == 0) {
         $stmt = $connexion->prepare("INSERT INTO users (username, email, nemro_telephone, password_hash) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $full_name, $email, $NumeroTelephone, $password); 
+        $stmt->bind_param("ssss", $full_name, $email, $NumeroTelephone, $hashed_password); 
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -70,13 +70,35 @@ function Authadmin(){
     $result = $connexion->query("SELECT * from users where username = '$nom' and password_hash = '$password' and role='admin'");
     return $result;
 }
-function Authuser(){
+function Authuser() {
     $password = $_POST["password"];
     $nom = $_POST["nom"];
+
     $connexion = Connexion();
-    $result = $connexion->query("SELECT * from users where username = '$nom' and password_hash = '$password' and role='user'");
-    return $result;
+
+    $stmt = $connexion->prepare("SELECT * FROM users WHERE username = ? AND role = 'user'");
+    $stmt->bind_param("s", $nom);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+        
+        if (password_verify($password, $data["password_hash"])) {
+            $_SESSION["UserName"] = $data["username"];
+        $_SESSION["user_id"] = $data["user_id"];
+            return $data;
+        } else {
+            return false; 
+        }
+    } else {
+        return false; 
+    }
+    
+    $stmt->close();
 }
+
 function selectEquipements(){
     $connexion = Connexion();
     $result = $connexion->query("SELECT * from equipements where Disponibilite = 1");
@@ -122,7 +144,7 @@ function addReservedEquipement($idEquipement,$idClient){
     $prix = $_POST["prix"];
     $ResPrix = $quantite * $prix;
     $stmt = $connexion->prepare("INSERT INTO `reservations_equipements`( `ID_Membre`, `ID_Equipement`,`Quantite_Reservee`,`Prix`) 
-    VALUES (?,?,?)");
+    VALUES (?,?,?,?)");
     $stmt->execute([$idClient,$idEquipement,$quantite,$ResPrix]);
     if ($stmt->affected_rows > 0) {
         $stmt1  = $connexion->prepare("UPDATE `equipements` SET `Quantite`= `Quantite`-? WHERE  `ID_Equipement` = ?");
@@ -175,4 +197,8 @@ function Stats() {
             $stats = $result->fetch_assoc();
     return $stats;
   
+}
+function selectReservations(){
+    $connexion = Connexion();
+    // $result = $connexion->query("SELECT * form ");
 }
