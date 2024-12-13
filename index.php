@@ -74,6 +74,9 @@ if(isset($_GET["action"])){
         case 'DeleteUser':
             DeleteUserAction();
             break;
+        case 'addActivity':
+            addActivity();
+            break;
         default:
         error_404();    
             break;

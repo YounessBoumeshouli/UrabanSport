@@ -38,7 +38,7 @@ function adminAuthentification(){
     $result = Authadmin();
     while($row=$result->fetch_assoc()){
         $_SESSION["adminName"] = $row['username'];
-        require_once('views/mainview.php');
+        viewMain();
      }
      require_once('views/formAdmin.php');   
     }
@@ -111,4 +111,8 @@ function DeleteUserAction(){
 function MyReservation(){
     $result =  selectReservations();
    require_once("views/Myreservation.php");
+}
+function addActivity(){
+    InsertActivity();
+    viewActivitesList();
 }

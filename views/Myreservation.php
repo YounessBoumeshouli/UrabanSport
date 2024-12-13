@@ -24,7 +24,13 @@ ob_start();
           <div class="box">
             <div class="name">
               <h5>
-               <?=$row["Nom_Equipement"]?>
+               <?=$row["Nom"]?>
+              </h5>
+              <h5>
+               <?=$row["description"]?>
+              </h5>
+              <h5>
+               <?=$row["Source"]?>
               </h5>
             </div>
             <div class="img-box">
@@ -34,9 +40,9 @@ ob_start();
               <a href="">
                 <img src="images/facebook-logo.png" alt="">
               </a>
-              <div class="text-black"><?=$row["Quantite"]?></div>
-              <a href="index.php?action=ChooseEquipement&id=<?=$row["ID_Equipement"]?>">
-                <p class="w-7">reserve</p>
+              <div class="text-black"><?=$row["Resource"]?></div>
+              <a href="index.php?action=ChooseEquipement&id=<?=$row["ID_Reservation"]?>">
+                <p class="w-7">Cancel Reservation</p>
               </a>
             </div>
           </div>

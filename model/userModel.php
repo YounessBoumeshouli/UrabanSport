@@ -200,7 +200,7 @@ function Stats() {
 }
 function selectReservations(){
     $connexion = Connexion();
-    $id = $_SESSION['id'];
+    $id = $_SESSION['user_id'];
     $result = $connexion->query("SELECT reservations_equipements.ID_Reservation, reservations_equipements.ID_Membre, reservations_equipements.Quantite_Reservee AS Detail,
      equipements.Description AS description, equipements.Nom_Equipement AS Nom, reservations_equipements.ID_Equipement AS Resource,
       'reservations_equipements' AS Source
@@ -217,4 +217,13 @@ function selectReservations(){
 return $result;
 
 
+}
+function InsertActivity(){
+    $connexion = Connexion();
+    extract($_POST);
+    $stmt = $connexion->prepare("INSERT INTO 
+    `activités`(`activite_name`, `Description`, `ImageActivity`, `Capacité`, `Prix`, `date_debut`, `date_fin`) 
+    VALUES (?,?,?,?,?,?,?)");
+    $stmt->bind_param("sssiiss",$activite_name,$Description,$imageActivity,$capaciteActivity,$prixActivity,$DateDebut,$DateFin);
+    $stmt->execute();
 }
