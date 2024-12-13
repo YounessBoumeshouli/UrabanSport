@@ -116,3 +116,7 @@ function addActivity(){
     InsertActivity();
     viewActivitesList();
 }
+function addEquipement(){
+    InsertEquipement();
+    viewEquipementList();
+}

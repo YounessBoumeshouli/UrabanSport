@@ -227,3 +227,10 @@ function InsertActivity(){
     $stmt->bind_param("sssiiss",$activite_name,$Description,$imageActivity,$capaciteActivity,$prixActivity,$DateDebut,$DateFin);
     $stmt->execute();
 }
+function InsertEquipement(){
+    $connexion = Connexion();
+    extract($_POST);
+    $stmt = $connexion->prepare("INSERT INTO `equipements`( `Nom_Equipement`, `Description`, `ImageEquipement`, `Quantite`, `Prix`) VALUES  (?,?,?,?,?)");
+    $stmt->bind_param("sssii",$equipement_name,$Description,$imageEquipement,$capaciteEquipement,$prixEquipement);
+    $stmt->execute();
+}

@@ -77,6 +77,9 @@ if(isset($_GET["action"])){
         case 'addActivity':
             addActivity();
             break;
+        case 'addEquipement':
+            addEquipement();
+            break;
         default:
         error_404();    
             break;

@@ -3,42 +3,31 @@ $title = "Equipements List";
 ob_start();
 ?>
 <div class="flex justify-center items-center text-white mt-10 h-16"><button id="addEquipement">Add Equipement</button></div>
-        <form action="index.php?action=addEquipement" id="addActivityForm" method="post" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 w-[50%] text-white hidden">
+        <form action="index.php?action=addEquipement" id="addEquipementForm" method="post" class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5 w-[50%] text-white hidden">
               <div class="md:col-span-5">
-                <label for="activite_name">Activity Name</label>
-                <input type="text" name="activite_name"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  />
+                <label for="equipement_name">Equipement Name</label>
+                <input type="text" name="equipement_name"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  />
               </div>
               
 
               <div class="md:col-span-5">
                 <label for="Description">Description</label>
-                <input type="text" name="Description"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black" placeholder="decription for this activity" />
+                <input type="text" name="Description"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black" placeholder="decription for this Equipement" />
               </div>
 
               <div class="md:col-span-3">
-                <label for="imageActivity">Image of the Activity</label>
-                <input type="text" name="imageActivity"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"   />
+                <label for="imageEquipement">Image of the Equipement</label>
+                <input type="text" name="imageEquipement"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"   />
               </div>
               <div class="md:col-span-3">
-                <label for="capaciteActivity">Capacite of the Activity</label>
-                <input type="number" name="capaciteActivity"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  max=100  />
+                <label for="capaciteEquipement">Quantity of the Equipement</label>
+                <input type="number" name="capaciteEquipement"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  max=100  />
               </div>
               <div class="md:col-span-3">
-                <label for="prixActivity">price of the Activity</label>
-                <input type="number" name="prixActivity"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  max=100  />
-              </div>
-
-              <div class="md:col-span-2">
-                <label for="DateDebut">Date debut</label>
-                <input type="date" name="DateDebut"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  />
-              </div>
-              <div class="md:col-span-2">
-                <label for="DateFin">Date fin</label>
-                <input type="date" name="DateFin"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  />
-              </div>
-              <div class="md:col-span-5 text-right">
+                <label for="prixEquipement">price of the Equipement</label>
+                <input type="number" name="prixEquipement"  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50 text-black"  max=100  />
                 <div class="inline-flex items-end">
-                  <input type="submit" value="add Activity" id="subActivity"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-black">
+                  <input type="submit" value="add Equipement" id="subEquipement"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-black">
                 </div>
                 
               </div>
