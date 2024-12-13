@@ -28,12 +28,10 @@ ob_start();
               </h5>
             </div>
             <div class="img-box">
-              <img src="images/t1.jpg" alt="">
+              <img src="images/healthy-bg.jpg" alt="">
             </div>
-            <div class="social_box">
-              <a href="">
-                <img src="images/facebook-logo.png" alt="">
-              </a>
+            <div class="social_box">  
+              
               <div class="text-black"><?=$row["Quantite"]?></div>
               <a href="index.php?action=ChooseEquipement&id=<?=$row["ID_Equipement"]?>">
                 <p class="w-7">reserve</p>

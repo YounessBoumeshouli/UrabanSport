@@ -230,7 +230,22 @@ function InsertActivity(){
 function InsertEquipement(){
     $connexion = Connexion();
     extract($_POST);
-    $stmt = $connexion->prepare("INSERT INTO `equipements`( `Nom_Equipement`, `Description`, `ImageEquipement`, `Quantite`, `Prix`) VALUES  (?,?,?,?,?)");
-    $stmt->bind_param("sssii",$equipement_name,$Description,$imageEquipement,$capaciteEquipement,$prixEquipement);
-    $stmt->execute();
+
+    $CheckRequete = $connexion->prepare("SELECT COUNT(*) FROM `equipements` WHERE `Nom_Equipement` = ?");
+    $CheckRequete->bind_param("s", $equipement_name);
+    $CheckRequete->execute();
+    $CheckRequete->bind_result($count);
+    $CheckRequete->fetch();
+    $CheckRequete->close();
+
+    if ($count == 0) {
+        $stmt = $connexion->prepare("INSERT INTO `equipements`(`Nom_Equipement`, `Description`, `ImageEquipement`, `Quantite`, `Prix`) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssii", $equipement_name, $Description, $imageEquipement, $capaciteEquipement, $prixEquipement);
+        $stmt->execute();
+        $stmt->close();
+    } else {
+        echo "The equipment already exists.";
+    }
+
+    $connexion->close();
 }

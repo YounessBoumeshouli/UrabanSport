@@ -109,6 +109,8 @@ ob_start();
             </div>
         </div>
     </div>
+    <script src="js/formActivity.js"></script>
+
 <?php
 $content = ob_get_clean();
 require_once("views/layout.php");

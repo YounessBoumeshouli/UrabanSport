@@ -95,6 +95,7 @@ ob_start();
             </div>
         </div>
     </div>
+    <script src="js/formEquipement.js"></script>
 <?php
 $content = ob_get_clean();
 require_once("views/layout.php");
