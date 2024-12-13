@@ -13,7 +13,7 @@ ob_start();
     <div class="container">
       <div class="heading_container">
         <h2>
-          Our Equipements
+         My reservation
         </h2>
       </div>
       <div class="row">

@@ -9,7 +9,7 @@ else{
     return $mysqli;
 }
 }
-// num_rows for select and affected_rows for others
+// num_rows pour select et affected_rows pour others
 function InsertUser() {
     $connexion = Connexion();
     
@@ -200,5 +200,21 @@ function Stats() {
 }
 function selectReservations(){
     $connexion = Connexion();
-    // $result = $connexion->query("SELECT * form ");
+    $id = $_SESSION['id'];
+    $result = $connexion->query("SELECT reservations_equipements.ID_Reservation, reservations_equipements.ID_Membre, reservations_equipements.Quantite_Reservee AS Detail,
+     equipements.Description AS description, equipements.Nom_Equipement AS Nom, reservations_equipements.ID_Equipement AS Resource,
+      'reservations_equipements' AS Source
+     FROM `reservations_equipements` INNER join equipements
+      ON equipements.ID_Equipement = reservations_equipements.ID_Equipement WHERE ID_Membre = $id 
+      UNION ALL 
+      SELECT reservations_activites.ID_Reservation, reservations_activites.ID_Membre, reservations_activites.Places_Reserver AS Detail,
+       activités.description AS description, activités.activite_name AS Nom, reservations_activites.ID_Activité AS Resource,
+        'reservations_activites' AS Source 
+        FROM `reservations_activites` 
+        INNER join activités ON activités.id_activite = reservations_activites.ID_Activité 
+        WHERE ID_Membre = $id ORDER BY Source;");
+
+return $result;
+
+
 }

@@ -110,5 +110,5 @@ function DeleteUserAction(){
 }
 function MyReservation(){
     $result =  selectReservations();
-   require_once("views/updateuser.php");
+   require_once("views/Myreservation.php");
 }
